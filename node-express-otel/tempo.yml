@@ -1,0 +1,26 @@
+server:
+  http_listen_port: 3200
+  log_level: info
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: "tempo:4317"
+        http:
+          endpoint: "tempo:4318"
+
+ingester:
+  trace_idle_period: 10s
+  max_block_duration: 5m
+
+compactor:
+  compaction:
+    compacted_block_retention: 48h
+
+storage:
+  trace:
+    backend: local
+    local:
+      path: /tmp/tempo/traces

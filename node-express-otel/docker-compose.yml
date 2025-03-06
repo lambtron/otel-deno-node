@@ -1,0 +1,51 @@
+services:
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki.yml
+    volumes:
+      - ./loki.yml:/etc/loki.yml
+
+  tempo:
+    image: grafana/tempo:latest
+    ports:
+      - "3200:3200" # tempo
+      - "4320:4317" # otlp grpc
+      - "4321:4318" # otlp http
+    command: ["--config.file=/etc/tempo.yml"]
+    volumes:
+      - ./tempo.yml:/etc/tempo.yml
+    
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - /var/log:/var/log
+      - ./promtail.yml:/etc/promtail/promtail.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/promtail.yml
+    restart: unless-stopped
+    user: root
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: ["--config=/etc/otel-collector.yml"]
+    volumes:
+      - ./otel-collector.yml:/etc/otel-collector.yml
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "4319:4319"
+    depends_on:
+      - loki
+      - tempo

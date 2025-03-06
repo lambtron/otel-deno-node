@@ -1,0 +1,26 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
+
+exporters:
+  debug:
+    verbosity: detailed
+  loki:
+    endpoint: "http://loki:3100/loki/api/v1/push"
+  otlp:
+    endpoint: "http://tempo:4317"
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    logs:
+      receivers: [otlp]
+      exporters: [loki]
+    traces:
+      receivers: [otlp]
+      exporters: [otlp]
