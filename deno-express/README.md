@@ -1,6 +1,7 @@
 # OTEL in Deno vs. Node
 
-This project shows how to setup observability for the same app in Node and Deno.
+This simple chat app, built with Express and ChatGPT-3.5 API, demonstrates
+setting up observability tooling in Deno and in Node.
 
 ## Node
 
