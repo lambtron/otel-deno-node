@@ -11,25 +11,6 @@ if (!OPENAI_API_KEY) {
   process.exit(1);
 }
 
-// /**
-//  * Create own logger with trace id.
-//  */
-
-// function log(level, message, meta = {}) {
-//   const activeSpan = trace.getSpan(context.active());
-//   const traceId = activeSpan ? activeSpan.spanContext().traceId : "no-trace-id";
-
-//   const logEntry = {
-//     timestamp: new Date().toISOString(),
-//     level,
-//     message,
-//     trace_id: traceId,
-//     ...meta,
-//   };
-
-//   console.log(JSON.stringify(logEntry));
-// }
-
 // Middleware to parse JSON bodies
 app.use((req, _res, next) => {
   logger.info("Incoming request", {
