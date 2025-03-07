@@ -34,7 +34,7 @@ OTEL_DENO=true OTEL_SERVICE_NAME=chat-app deno run --unstable-otel --allow-net -
 Run OTEL stack:
 
 ```bash
-docker run --name lgtm -p 3001:3000 -p 4317:4317 -p 4318:4318 --rm -ti \
+docker run --name lgtm -p 3000:3000 -p 4317:4317 -p 4318:4318 --rm -ti \
     -v "$PWD"/lgtm/grafana:/data/grafana \
     -v "$PWD"/lgtm/prometheus:/data/prometheus \
     -v "$PWD"/lgtm/loki:/data/loki \
