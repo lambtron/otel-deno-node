@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "start": "deno --allow-env --allow-net --env-file server.js"
+    "start": "deno --allow-env --allow-net --env-file server.js",
+    "otel": "OTEL_DENO=true OTEL_SERVICE_NAME=chat-app deno run --unstable-otel --allow-net --allow-read --allow-env --env-file server.js"
   },
   "imports": {
     "express": "npm:express@^4.1.8"

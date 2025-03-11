@@ -32,7 +32,11 @@ In `./deno-express`:
 Run the app:
 
 ```bash
-OTEL_DENO=true OTEL_SERVICE_NAME=chat-app deno run --unstable-otel --allow-net --allow-read --allow-env server.js
+# Run app without sending OTEL data
+deno task start
+
+# Run app sending OTEL data
+deno task otel
 ```
 
 Run OTEL LGTM stack:
