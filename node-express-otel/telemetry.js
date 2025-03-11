@@ -1,19 +1,15 @@
-const process = require("process");
-const { NodeSDK } = require("@opentelemetry/sdk-node");
-const { OTLPLogExporter } = require("@opentelemetry/exporter-logs-otlp-http");
-const { OTLPTraceExporter } = require(
-  "@opentelemetry/exporter-trace-otlp-http",
-);
-const { OTLPMetricExporter } = require(
-  "@opentelemetry/exporter-metrics-otlp-http",
-);
-const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
-const {
+import process from "process";
+import { NodeSDK } from "@opentelemetry/sdk-node";
+import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
+import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
+import {
   LoggerProvider,
   SimpleLogRecordProcessor,
-} = require("@opentelemetry/sdk-logs");
-const { Resource } = require("@opentelemetry/resources");
-const { trace, context } = require("@opentelemetry/api");
+} from "@opentelemetry/sdk-logs";
+import { Resource } from "@opentelemetry/resources";
+import { context, trace } from "@opentelemetry/api";
 
 const resource = new Resource({
   "service.name": process.env.OTEL_SERVICE_NAME || "chat-app",
@@ -81,4 +77,4 @@ process.on("SIGTERM", () => {
     .finally(() => process.exit(0));
 });
 
-module.exports = customLogger;
+export { customLogger as logger };

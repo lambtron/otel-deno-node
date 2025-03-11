@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ChatGPT Interface with Node.js",
   "main": "server.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "OTEL_SERVICE_NAME=chat-app OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 OTEL_LOG_LEVEL=error node server.js"
   },
