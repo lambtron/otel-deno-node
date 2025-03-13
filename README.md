@@ -1,6 +1,7 @@
 # OTEL in Deno vs. Node
 
-This project shows how to setup observability for the same app in Node and Deno.
+This project is accompanied by the blog post
+["How to get deep traces in your Node.js backend with OTel and Deno"](https://deno.com/blog/otel-tracing-in-node-and-deno).
 
 ## Node
 
